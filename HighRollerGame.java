@@ -16,8 +16,8 @@ public class HighRollerGame {
                     break;
                 } else if (command.matches("use\\s+\\d\\d?\\s+\\d\\d?")) {
                     var tokens = command.split("\\s+");
-                    var sides = Integer.parseInt(tokens[1].trim());
-                    var number = Integer.parseInt(tokens[2].trim());
+                    var sides = Integer.parseInt(tokens[2].trim());
+                    var number = Integer.parseInt(tokens[1].trim());
                     diceSet = new DiceSet(sides, number);
                     highest = Math.max(highest, diceSet.sum());
                     System.out.println("You are now using a " + diceSet.descriptor());
