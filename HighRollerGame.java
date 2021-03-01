@@ -18,6 +18,7 @@ public class HighRollerGame {
                     var tokens = command.split("\\s+");
                     var sides = Integer.parseInt(tokens[2].trim());
                     var number = Integer.parseInt(tokens[1].trim());
+                    System.out.println("Parsing completed");
                     diceSet = new DiceSet(sides, number);
                     highest = Math.max(highest, diceSet.sum());
                     System.out.println("You are now using a " + diceSet.descriptor());
@@ -27,6 +28,10 @@ public class HighRollerGame {
                         throw new IllegalStateException("You don't have any dice yet");
                     }
                     // TODO: Roll all, sum them up, and update the highest score so far
+                    diceSet.rollAll();
+                    highest = Math.max(highest, diceSet.sum());
+                    System.out.println("Highest score so far is " + highest);
+                    System.out.println(diceSet.toString());
                     // if necessary, and then print out the dice set
                 } else if (command.matches("roll\\s+\\d+")) {
                     if (diceSet == null) {
@@ -38,8 +43,10 @@ public class HighRollerGame {
                 } else if (command.matches("high(est)?")) {
                     if (highest == 0) {
                         // TODO: Print that there is no highest score yet
+                        System.out.println("No high score registred yet");
                     } else {
                         // TODO: Print the highest score so far
+                        System.out.println("Highest score so far is " + highest);
                     }
                 } else {
                     System.out.println("I don't understand");
@@ -51,6 +58,12 @@ public class HighRollerGame {
     }
 
     private static void showHelp() {
+        System.out.println("h or help       : Prints this message");
+        System.out.println("q or quit       : Quits the program");
+        System.out.println("use <n> <s>     : Get a new dice set with n dice of s sides each");
+        System.out.println("roll all        : Roll all the dice in your current dice set");
+        System.out.println("roll <i>        : Roll the ith die of your current dice set");
+        System.out.println("high or highest : Prints the highest roll so far");
         // TODO: Add lines to print out the help menu as shown on the lab instructions
     }
 }

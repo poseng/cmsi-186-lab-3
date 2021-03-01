@@ -10,6 +10,9 @@ public class Die {
     private static Random random = new Random();
 
     // TODO: Add fields
+    private int sides;
+    private int value;
+    public static String SIX_SIDED_DIE_EMOJI = "🎲";
 
     /**
      * Constructs a die with the given number of sides and starting value.
@@ -18,6 +21,14 @@ public class Die {
      */
     public Die(int sides, int value) {
         // TODO
+        if (sides < 4) {
+            throw new IllegalArgumentException("At least four sides required");
+        }
+        else if (value < 1 || value > sides){
+            throw new IllegalArgumentException("Die value not legal for die shape");
+        }
+        this.sides = sides;
+        this.value = value;
     }
 
     /**
@@ -26,6 +37,9 @@ public class Die {
      */
     public int roll() {
         // TODO
+        var new_value = random.nextInt(sides) + 1;
+        value = new_value;
+        return new_value;
     }
 
     /**
@@ -33,6 +47,7 @@ public class Die {
      */
     public int getSides() {
         // TODO
+        return sides;
     }
 
     /**
@@ -40,6 +55,7 @@ public class Die {
      */
     public int getValue() {
         // TODO
+        return value;
     }
 
     /**
@@ -48,5 +64,7 @@ public class Die {
      */
     @Override public String toString() {
         // TODO
+        return "[" + value + "]";
     }
+    
 }
